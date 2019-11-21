@@ -172,7 +172,7 @@ class LandingPage extends Component {
                             className={classnames("form-control", {
                               "is-invalid": errors.addressNumber
                             })}
-                            placeholder="Số nhà"
+                            placeholder="Số nhà - Tên đường"
                             name="addressNumber"
                             value={this.state.addressNumber}
                             onChange={this.onChange}
