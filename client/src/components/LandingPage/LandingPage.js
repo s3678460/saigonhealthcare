@@ -325,7 +325,6 @@ class LandingPage extends Component {
                       ĐĂNG KÝ NHẬN TƯ VẤN
                     </button>
 
-                    <div>{this.state.dob}</div>
 
                     <hr className="my-4" />
                   </form>
