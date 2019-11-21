@@ -8,9 +8,18 @@ import { submitForm } from "../../actions/submitActions";
 import classnames from "classnames";
 import DayPicker, { DateUtils } from "react-day-picker";
 import "react-day-picker/lib/style.css";
-import DayPickerInput from "react-day-picker/DayPickerInput";
+// import DayPickerInput from "react-day-picker/DayPickerInput";
 import dateFnsFormat from 'date-fns/format';
 import dateFnsParse from 'date-fns/parse';
+
+//import Date-picker library
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css"
+import { subDays } from "date-fns";
+
+//Configure maxDate for calendar
+const maxDate = new Date()
+
 class LandingPage extends Component {
   constructor() {
     super();
@@ -22,7 +31,8 @@ class LandingPage extends Component {
       ward: "",
       district: "",
       city: "",
-      dob: "",
+      // dob: "",
+      dob: maxDate,
       selectedDay: undefined,
       gender:"",
 
@@ -47,10 +57,9 @@ class LandingPage extends Component {
       ward: this.state.ward,
       district: this.state.district,
       city: this.state.city,
-      dob: this.state.dob,
+      dob: this.state.dob?this.formatDate(this.state.dob, 'dd/MM/yyyy', null ):null,
       gender: this.state.gender
     };
-
     this.props.submitForm(clientData, this.props.history);
   }
 
@@ -61,11 +70,16 @@ class LandingPage extends Component {
   }
 
   handleDayChange(day) {
-    var date = day.toString();
-    this.setState({ 
-      dob:date
-    });
-    console.log(this.state.dob)
+    // var date = day.toString();
+    // this.setState({ 
+    //   dob:date
+    // });
+    // console.log(this.state.dob)
+    var date = this.formatDate(day, 'dd/MM/yyyy', null )
+    console.log(date)
+    this.setState({
+      dob: day
+    })
   }
 
   parseDate(str, format, locale) {
@@ -76,14 +90,15 @@ class LandingPage extends Component {
     return undefined;
   }
   
-   formatDate(date, format, locale) {
+  formatDate(date, format, locale) {
     return dateFnsFormat(date, format, { locale });
   }
 
   render() {
     const { errors } = this.state;
-    // console.log(errors)
+    console.log(errors)
     const dob = this.state.dob;
+    console.log(dob)
     const FORMAT = 'dd/MM/yyyy';
     // const {gender} = this.state;
     // console.log(gender)
@@ -286,24 +301,50 @@ class LandingPage extends Component {
                         </div>
                       </div>
                     </div>
-                    
+
                     {/* Date of Birth */}
                     <div className="form-group">
-                      <input
+                      <DatePicker
                         type="text"
                         id="inputDob"
                         className={classnames("form-control", {
                           "is-invalid": errors.dob
                         })}
-                        placeholder="Ngày tháng năm sinh"
+                        placeholderText="Click to select a date"
                         name="dob"
-                        value={this.state.dob}
-                        onChange={this.onChange}
+                        selected={this.state.dob}
+                        onChange={this.handleDayChange}
+                        showMonthDropdown
+                        showYearDropdown
+                        dropdownMode="select"
+                        dateFormat="dd/MM/yyyy"
+                        maxDate={maxDate}
+                        withPortal                       
                       />
                       {errors.dob && (
                         <div className="invalid-feedback">{errors.dob}</div>
                       )}
                     </div>
+
+                    {/* Date of Birth
+                    <div className="form-group">
+                      <Calendar
+                        
+                        id="inputDob"
+                        className={classnames("form-control", {
+                          "is-invalid": errors.dob
+                        })}
+                        
+                        name="dob"
+                        value={this.state.dob}
+                        onChange={this.handleDayChange}
+                       
+                        
+                      />
+                      {errors.dob && (
+                        <div className="invalid-feedback">{errors.dob}</div>
+                      )}
+                    </div> */}
 
                     {/* <div className="form-group">
                       <div
