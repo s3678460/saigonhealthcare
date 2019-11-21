@@ -9,22 +9,24 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 // DB config
-
 const db = require('./config/keys').mongoURI;
 
 // Connect to MongoDB
-
 mongoose.connect(db, {
     useUnifiedTopology:true,
     useNewUrlParser: true,
     useFindAndModify: false
 })
-    .then(() => console.log('MongoDB Connected'))
-    .catch(err => console.log(err));
+.then(() => console.log('MongoDB Connected'))
+.catch(err => console.log(err));
+
+//Test Server
+app.get('/', (req, res)=> {
+    res.send('Hello Server')
+})
 
 // Use Routes
 app.use('/api/contacts', contacts);
-
 
 // Server static assets if in production
 if (process.env.NODE_ENV === 'production') {
@@ -36,4 +38,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const port = process.env.PORT || 5000;
-app.listen(port,() => console.log(`Server running on ${port}`));
+
+app.listen(port, () => {
+    console.log(`Server running on ${port}`)
+});

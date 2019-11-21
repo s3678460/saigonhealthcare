@@ -4,7 +4,6 @@ const Schema = mongoose.Schema;
 // Create Contact Schema
 
 const ContactSchema = new Schema({
-
     name:{
         type: String,
         require:true
@@ -16,6 +15,10 @@ const ContactSchema = new Schema({
     email:{
         type:String,
         
+    },
+    gender:{
+        type:String,
+        required:true
     },
     addressNumber:{
         type:String,
@@ -37,13 +40,9 @@ const ContactSchema = new Schema({
         type: String,
         required: true
     },
-    
-   lotteryNumber:{
+    lotteryNumber:{
        type: String
-   }
-
-
-
+    }
 });
 
 module.exports = Contact = mongoose.model('contacts',ContactSchema);

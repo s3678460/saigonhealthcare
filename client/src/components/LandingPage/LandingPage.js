@@ -24,6 +24,7 @@ class LandingPage extends Component {
       city: "",
       dob: "",
       selectedDay: undefined,
+      gender:"",
 
       errors: {}
     };
@@ -38,7 +39,6 @@ class LandingPage extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-
     const clientData = {
       name: this.state.name,
       phone: this.state.phone,
@@ -47,7 +47,8 @@ class LandingPage extends Component {
       ward: this.state.ward,
       district: this.state.district,
       city: this.state.city,
-      dob: this.state.dob
+      dob: this.state.dob,
+      gender: this.state.gender
     };
 
     this.props.submitForm(clientData, this.props.history);
@@ -63,8 +64,6 @@ class LandingPage extends Component {
     var date = day.toString();
     this.setState({ 
       dob:date
-      
-    
     });
     console.log(this.state.dob)
   }
@@ -83,12 +82,11 @@ class LandingPage extends Component {
 
   render() {
     const { errors } = this.state;
-
+    // console.log(errors)
     const dob = this.state.dob;
-
     const FORMAT = 'dd/MM/yyyy';
-
-
+    // const {gender} = this.state;
+    // console.log(gender)
     return (
       <div>
         <div className="container">
@@ -106,6 +104,7 @@ class LandingPage extends Component {
 
                   <form className="form-signin" onSubmit={this.onSubmit}>
                     <div className="row">
+                      {/* Full name */}
                       <div className="col-sm">
                         <div className="form-group">
                           <input
@@ -126,6 +125,34 @@ class LandingPage extends Component {
                           )}
                         </div>
                       </div>
+
+                      {/* Gender */}
+                      <div className="col-sm-3">
+                        <div className="form-group">
+                          <select
+                            type="text"
+                            id="inputGender"
+                            className={classnames("form-control", {
+                              "is-invalid": errors.gender
+                            })}
+                            placeholder="Giới tính"
+                            name="gender"
+                            value={this.state.gender}
+                            onChange={this.onChange}
+                          >
+                            <option selected>Giới tính</option>
+                            <option value="M">Nam</option>
+                            <option value="F">Nữ</option>
+                          </select>
+                          {errors.gender && (
+                            <div className="invalid-feedback">
+                              {errors.gender}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* phone */}
                       <div className="col-sm">
                         <div className="form-group">
                           <input
@@ -147,23 +174,31 @@ class LandingPage extends Component {
                         </div>
                       </div>
                     </div>
-                    <div className="form-group">
-                      <input
-                        type="email"
-                        id="inputEmail"
-                        className={classnames("form-control", {
-                          "is-invalid": errors.email
-                        })}
-                        placeholder="Email"
-                        name="email"
-                        value={this.state.email}
-                        onChange={this.onChange}
-                      />
-                      {errors.email && (
-                        <div className="invalid-feedback">{errors.email}</div>
-                      )}
-                    </div>
+
                     <div className="row">
+                      {/* Email */}
+                      <div className="col-sm">
+                        <div className="form-group">
+                          <input
+                            type="email"
+                            id="inputEmail"
+                            className={classnames("form-control", {
+                              "is-invalid": errors.email
+                            })}
+                            placeholder="Email"
+                            name="email"
+                            value={this.state.email}
+                            onChange={this.onChange}
+                          />
+                          {errors.email && (
+                            <div className="invalid-feedback">{errors.email}</div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="row">
+                      {/* Address - Number and Street */}
                       <div className="col-sm">
                         <div className="form-group">
                           <input
@@ -184,7 +219,7 @@ class LandingPage extends Component {
                           )}
                         </div>
                       </div>
-
+                      {/* Address - Ward */}
                       <div className="col-sm">
                         <div className="form-group">
                           <input
@@ -208,6 +243,7 @@ class LandingPage extends Component {
                     </div>
 
                     <div className="row">
+                      {/* Address - District */}
                       <div className="col-sm">
                         <div className="form-group">
                           <input
@@ -228,7 +264,7 @@ class LandingPage extends Component {
                           )}
                         </div>
                       </div>
-
+                      {/* Address - City */}
                       <div className="col-sm">
                         <div className="form-group">
                           <input
@@ -250,8 +286,8 @@ class LandingPage extends Component {
                         </div>
                       </div>
                     </div>
-
                     
+                    {/* Date of Birth */}
                     <div className="form-group">
                       <input
                         type="text"
@@ -317,14 +353,13 @@ class LandingPage extends Component {
                     placeholder="Ngày Tháng Năm Sinh"
                      onDayChange={this.handleDayChange}
                     />
-                    </div> */} 
+                    </div> */}
                     <button
                       className="btn btn-lg btn-primary btn-block text-uppercase"
                       type="submit"
                     >
                       ĐĂNG KÝ NHẬN TƯ VẤN
                     </button>
-
 
                     <hr className="my-4" />
                   </form>
