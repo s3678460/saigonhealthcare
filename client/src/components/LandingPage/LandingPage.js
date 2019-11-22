@@ -97,8 +97,6 @@ class LandingPage extends Component {
     return dateFnsFormat(date, format, { locale });
   }
 
-  
-
   render() {
     registerLocale('vi', vi)
     const { errors } = this.state;
