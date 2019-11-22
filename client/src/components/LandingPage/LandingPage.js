@@ -103,7 +103,7 @@ class LandingPage extends Component {
     // const {gender} = this.state;
     // console.log(gender)
     return (
-      <div>
+      <div >
         <div className="container">
           <div className="row">
             <div className="col-sm-9 col-md-7 col-lg-9 mx-auto">
