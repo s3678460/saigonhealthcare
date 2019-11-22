@@ -1,6 +1,3 @@
-
-if (process.env.NODE_ENV === 'production') {
-    module.exports = require('./keys_prod');
-} else {
-    module.exports = require ('./keys_dev')
-}
+module.exports={
+    mongoURI: 'mongodb://healthcare:healthcare123456@ds137508.mlab.com:37508/healthcare',
+};

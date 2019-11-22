@@ -15,6 +15,9 @@ import dateFnsParse from 'date-fns/parse';
 //import Date-picker library
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
+import { registerLocale, setDefaultLocale } from  "react-datepicker";
+import vi from 'date-fns/locale/vi';
+
 import { subDays } from "date-fns";
 
 //Configure maxDate for calendar
@@ -32,7 +35,7 @@ class LandingPage extends Component {
       district: "",
       city: "",
       // dob: "",
-      dob: maxDate,
+      dob: null,
       selectedDay: undefined,
       gender:"",
 
@@ -94,7 +97,10 @@ class LandingPage extends Component {
     return dateFnsFormat(date, format, { locale });
   }
 
+  
+
   render() {
+    registerLocale('vi', vi)
     const { errors } = this.state;
     console.log(errors)
     const dob = this.state.dob;
@@ -219,7 +225,7 @@ class LandingPage extends Component {
                             className={classnames("form-control", {
                               "is-invalid": errors.dob
                             })}
-                            placeholderText="Click to select a date"
+                            placeholderText="Ngày sinh"
                             name="dob"
                             selected={this.state.dob}
                             onChange={this.handleDayChange}
@@ -228,7 +234,8 @@ class LandingPage extends Component {
                             dropdownMode="select"
                             dateFormat="dd/MM/yyyy"
                             maxDate={maxDate}
-                            withPortal                       
+                            withPortal
+                            locale='vi'                       
                           />
                           {errors.dob && (
                             <div className="invalid-feedback">{errors.dob}</div>
