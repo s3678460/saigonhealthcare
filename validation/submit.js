@@ -30,7 +30,7 @@ module.exports = function validateSubmitInput(data) {
     // }
 
     if (!Validator.isNumeric(data.phone)){
-        errors.phone = 'Số điện thoại của bạn k hợp lệ';
+        errors.phone = 'Số điện thoại của bạn không hợp lệ';
     }
     if (Validator.isEmpty(data.phone)){
         errors.phone = 'Bạn chưa điền số điện thoại của bạn';
