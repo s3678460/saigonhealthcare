@@ -210,6 +210,31 @@ class LandingPage extends Component {
                           )}
                         </div>
                       </div>
+                      <div className="col-sm">
+                        {/* Date of Birth */}
+                        <div className="form-group">
+                          <DatePicker
+                            type="text"
+                            id="inputDob"
+                            className={classnames("form-control", {
+                              "is-invalid": errors.dob
+                            })}
+                            placeholderText="Click to select a date"
+                            name="dob"
+                            selected={this.state.dob}
+                            onChange={this.handleDayChange}
+                            showMonthDropdown
+                            showYearDropdown
+                            dropdownMode="select"
+                            dateFormat="dd/MM/yyyy"
+                            maxDate={maxDate}
+                            withPortal                       
+                          />
+                          {errors.dob && (
+                            <div className="invalid-feedback">{errors.dob}</div>
+                          )}
+                        </div>
+                      </div>
                     </div>
 
                     <div className="row">
@@ -300,30 +325,6 @@ class LandingPage extends Component {
                           )}
                         </div>
                       </div>
-                    </div>
-
-                    {/* Date of Birth */}
-                    <div className="form-group">
-                      <DatePicker
-                        type="text"
-                        id="inputDob"
-                        className={classnames("form-control", {
-                          "is-invalid": errors.dob
-                        })}
-                        placeholderText="Click to select a date"
-                        name="dob"
-                        selected={this.state.dob}
-                        onChange={this.handleDayChange}
-                        showMonthDropdown
-                        showYearDropdown
-                        dropdownMode="select"
-                        dateFormat="dd/MM/yyyy"
-                        maxDate={maxDate}
-                        withPortal                       
-                      />
-                      {errors.dob && (
-                        <div className="invalid-feedback">{errors.dob}</div>
-                      )}
                     </div>
 
                     {/* Date of Birth

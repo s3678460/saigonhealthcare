@@ -21,7 +21,7 @@ mongoose.connect(db, {
 .catch(err => console.log(err));
 
 //Test Server
-app.get('/', (req, res)=> {
+app.get('/test', (req, res)=> {
     res.send('Hello Server')
 })
 
