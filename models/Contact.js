@@ -18,27 +18,27 @@ const ContactSchema = new Schema({
     },
     gender:{
         type:String,
-        required:true
+        // required:true
     },
     addressNumber:{
         type:String,
-        required: true
+        // required: true
     },
     ward:{
         type:String,
-        required:true
+        // required:true
     },
     district:{
         type:String,
-        required:true
+        // required:true
     },
     city:{
         type:String,
-        required:true
+        // required:true
     },
     dob: {
         type: String,
-        required: true
+        // required: true
     },
     lotteryNumber:{
        type: String
